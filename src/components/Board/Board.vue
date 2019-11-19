@@ -1,0 +1,19 @@
+<template>
+  <div class="board">
+{{activeCells}}
+  <div class="table" v-if="table">
+    <div  class="row" v-for="(item,index) in table" :key="index">
+        <div class="cell title">{{item.dice}}</div>
+        <div class="cell" v-for="(valor,index2) in item.options" :key="index2" :ref="getRef(item.dice,valor)" :class="getActive(item.dice,valor)">
+          {{valor}}
+        </div>
+    </div>
+{{activeCells.length}}
+  </div>
+   
+  </div>
+</template>
+<script src="./Board.js"></script>
+<style lang="scss">
+  @import "./Board.scss";
+</style>
