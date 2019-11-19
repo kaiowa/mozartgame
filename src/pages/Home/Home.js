@@ -51,7 +51,25 @@ export default {
   //  this.$store.dispatch('game/startResetGame');
     // this.extractTrack();
     // let fichero=require('@/assets/midi/bach_846.mid');
-
+    window.onload = function () {
+    MIDI.loadPlugin({
+      soundfontUrl: "/libs/soundfont/",
+      instrument:"acoustic_grand_piano",
+      onprogress: function(state, progress) {
+      },
+      onsuccess: function() {
+          var iOS = ['iPad', 'iPhone', 'iPod'].indexOf(navigator.platform) >= 0;
+          console.log('sucesssssssssssss');
+          var delay = 0; // play one note every quarter second
+          var note = 50; // the MIDI note
+          var velocity = 127; // how hard the note hits
+          // play the note
+          MIDI.setVolume(0, 127);
+          MIDI.noteOn(0, note, velocity, delay);
+          MIDI.noteOff(0, note, delay + 0.75);
+      }
+  });
+};
 
   },
   methods:{
