@@ -10,7 +10,7 @@
     </div>
 {{activeCells.length}}
   </div>
-   
+  
   </div>
 </template>
 <script src="./Board.js"></script>

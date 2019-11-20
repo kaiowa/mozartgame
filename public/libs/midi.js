@@ -153,8 +153,6 @@ if (typeof (MidiPlayer) == 'undefined') {
 
     loadRemote(file, function (data) {
       if (_this.ct == 0) {
-        debugger;
-        console.log(data);
         _this.midiFile = MidiFile(data);
         _this.synth = Synth(44100);
       }
@@ -176,8 +174,7 @@ if (typeof (MidiPlayer) == 'undefined') {
   // A private function, defined by 'var'.
   // Original definition in [2] is: function loadRemote(path, callback) {
   var loadRemote = function (path, callback) {
-    console.log("loadRemote from midi.js");
-
+   
     var fetch = new XMLHttpRequest();
     fetch.open('GET', path);
 
@@ -216,7 +213,7 @@ if (typeof (MidiPlayer) == 'undefined') {
         }
       } else {
 
-        console.log(this.status)
+        
       }
     }
     fetch.send();

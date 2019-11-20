@@ -2,8 +2,11 @@
 <div class="home">
   <!-- <Piano></Piano> -->
   
-  <Board :activeCells="activeCells"></Board>
+  <Board :activeCells="activeCells" @updateNotes="updateNotes"></Board>
   <button @click="generateDices()">Generate dices</button>
+  <Visor :notes="notes"></Visor>
+  <!-- <Piano></Piano> -->
+  
   <!-- <div class="table" v-if="table">
     <div  class="row" v-for="(item,index) in table" :key="index">
         

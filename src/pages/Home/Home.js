@@ -1,5 +1,7 @@
 import Piano from '@/components/Piano';
 import Board from '@/components/Board';
+import Visor from '@/components/Visor';
+
 import { Midi } from '@tonejs/midi';
 import axios from 'axios';
 
@@ -31,7 +33,8 @@ export default {
   name: 'home',
   components: {
     Piano,
-    Board
+    Board,
+    Visor
   },
   computed: {
     ...mapState({
@@ -40,7 +43,8 @@ export default {
   },
   data() {
     return {
-      activeCells:[]
+      activeCells:[],
+      notes:[]
     };
   },
   created(){
@@ -73,6 +77,11 @@ export default {
 
   },
   methods:{
+    updateNotes(notas){
+      console.log(notas.length);
+      this.notes=[];
+      this.notes=notas;
+    },
     generateDices(){
       this.$store.dispatch('game/generateDices').then((data)=>{
           console.log('results',data);
