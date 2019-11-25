@@ -8,9 +8,19 @@
           {{valor}}
         </div>
     </div>
-{{activeCells.length}}
+
   </div>
-  
+<br>
+{{trios}}
+   <div class="table" v-if="trios">
+    <div  class="row" v-for="(itemTrio,index) in trios" :key="index">
+        <div class="cell title">{{index+1}}</div>
+        <div class="cell" v-for="(valor,index2) in itemTrio.options" :key="index2" :ref="getRefTrio(itemTrio.dice,valor)" :class="getActiveTrio(itemTrio.dice,valor)">
+          {{valor}}
+        </div>
+    </div>
+
+  </div>
   </div>
 </template>
 <script src="./Board.js"></script>

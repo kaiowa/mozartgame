@@ -57,19 +57,20 @@ export default {
      this.totalTime=this.notes[this.notes.length-1].time;
      let canvas=this.$refs.canvas;
      let ctx=canvas.getContext("2d");
-     ctx.lineWidth = 1;
+     ctx.fillStyle = '#CFD8DC';
+     
      ctx.strokeStyle = "#000";
      ctx.beginPath();
-      for(let a=0;a<=250;a++){
+      for(let a=0;a<=850;a++){
         ctx.moveTo(0+(a*5),0);
-        ctx.lineTo(0+(a*5), 5);
+        ctx.lineTo(0+(a*5), 400);
       }
       ctx.closePath();
       ctx.stroke();
       ctx.fill();
-    ctx.moveTo(0,5);
-    ctx.lineTo(2000,5);
-    ctx.stroke();
+      ctx.moveTo(0,5);
+      ctx.lineTo(2000,5);
+      ctx.stroke();
 
      
     

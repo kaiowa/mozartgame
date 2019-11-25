@@ -1,8 +1,9 @@
 <template>
   <div class="visor">
     totalTime:{{totalTime}}
-   
-    <canvas ref="canvas"></canvas>
+    <div class="container_canvas">
+    <canvas ref="canvas" id="canvas"></canvas>
+    </div>
   </div>
   
   

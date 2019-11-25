@@ -1,6 +1,7 @@
 
 
 import { mapState, } from 'vuex';
+import KEYS from '@/data/piano_keys.json';
 export default {
   name: 'board',
   components:{
@@ -9,16 +10,21 @@ export default {
     activeCells: {
       type:Array
     },
+    activeCellsTrios: {
+      type:Array
+    },
   },
   computed: {
     ...mapState({
-      table:state => state.game.table
+      table:state => state.game.table,
+      trios:state =>state.game.trios
     })
   },
   watch:{
     activeCells(data){
       this.updateCells(data)
     }
+   
   },
   data() {
     return {
@@ -59,8 +65,23 @@ export default {
       }
      
     },
+    getActiveTrio(dice,valor){
+      
+      if(!this.activeCellsTrios.length || this.activeCellsTrios.length==0){
+        return ''
+      }else{
+         let activo=this.activeCellsTrios.find((item)=>{
+            return item.dice===dice && item.value===valor
+          });
+        return activo? 'active': '';
+      }
+     
+    },
     getRef(dice,valor){
       return dice+'_'+valor;
+    },
+    getRefTrio(dice,valor){
+      return 'trio_'+dice+'_'+valor;
     },
     extractTrack(data,index,fichero){
       
@@ -123,6 +144,10 @@ export default {
         });
       });
     },
+    getMidi(nota){
+      
+      return KEYS.find(e=>e.midiCode===nota).keyname;
+    },
     createNotes(){
         let self=this;
         this.totalTime=0;
@@ -151,11 +176,14 @@ export default {
               item.fichero=fichero;
               // this.totalTime=this.totalTime+parseFloat(item.deltaTime);
               if(item.subtype==='noteOn'){
+                console.log(item);
                 let nota={
                   'subtype':item.subtype,
                   'noteOn':item.noteNumber,
                   'time':item.totalTime,
-                  'fichero':item.fichero
+                  'fichero':item.fichero,
+                  'velocity':item.velocity,
+                  'midiNote':this.getMidi(item.noteNumber)
                 }
                 self.notes.push(nota);
               }else{
@@ -163,7 +191,9 @@ export default {
                   'subtype':item.subtype,
                   'noteOff':item.noteNumber,
                   'time':item.totalTime,
-                  'fichero':item.fichero
+                  'fichero':item.fichero,
+                  'velocity':item.velocity,
+                  'midiNote':this.getMidi(item.noteNumber)
                 }
                 self.notes.push(nota);
               }
@@ -181,42 +211,57 @@ export default {
       console.log('Ficheros melodia');
       var self=this;
       let arrayPromises=[];
+      let contaFicheros=1;
       data.forEach((item,index)=>{
-        
-        let fichero="/files/M"+item.value+".mid";
-        console.log(fichero);
-        arrayPromises.push(this.loadMidiFile(fichero,index));
-      });
-      Promise.all(arrayPromises).then((data)=>{
-          console.log('TODOS LOS FICHEROS PARSEADOS');
-          self.tracks.sort(function(a,b){
-            return a.orderFichero - b.orderFichero
-          });
-          console.log(self.tracks);
-          self.createNotes();
-      });
-      // setTimeout(()=>{
-      //   console.log('notas',this.notes);
-      //    this.notes.sort(function (a, b) {
-      //      return a.time - b.time;
-      //    });
-      //   MIDI.setVolume(0, 127);
-      //   this.notes.forEach((note)=>{
+        if(item.value){
 
-      //       setTimeout(()=>{
-      //         var delay = 0; // play one note every quarter second
-              
-      //         var velocity = 127; // how hard the note hits
-      //         // play the note
-      //         if(note.subtype=='noteOn'){
-      //           MIDI.noteOn(0, note.noteOn, velocity, delay);
-      //         }
+          let fichero="/files/M"+item.value+".mid";
+          console.log(fichero);
+          arrayPromises.push(this.loadMidiFile(fichero,contaFicheros));
+          contaFicheros++;
+        }
+      });
+
+      console.log('ficheros trios');
+      this.activeCellsTrios.forEach((item,index)=>{
+        if(item.value){
+        let fichero="/files/T"+item.value+".MID";
+        arrayPromises.push(this.loadMidiFile(fichero,contaFicheros));
+        console.log(fichero);
+        contaFicheros++;
+        }
+      });
+
+      Promise.all(arrayPromises).then((data)=>{
+        console.log('TODOS LOS FICHEROS PARSEADOS');
+        self.tracks.sort(function(a,b){
+          return a.orderFichero - b.orderFichero
+        });
+        console.log(self.tracks);
+        self.createNotes();
+    });
+      setTimeout(()=>{
+        console.log('notas',this.notes);
+         this.notes.sort(function (a, b) {
+           return a.time - b.time;
+         });
+        MIDI.setVolume(0, 127);
+        this.notes.forEach((note)=>{
+
+            setTimeout(()=>{
+              var delay = 0; // play one note every quarter second
+              var velocity = 127; // how hard the note hits
+              // play the note
+              if(note.subtype=='noteOn'){
+                // MIDI.noteOn(0, note.noteOn, velocity, delay);
+                self.$store.dispatch('game/playNote',note);
+              }
              
               
-      //       },note.time)
-      //   });
+            },note.time)
+        });
 
-      // },3000)
+      },3000)
       
 
     }

@@ -12,15 +12,96 @@ $whiteKey_Color:       #CBCBCB;
 $blackKey_Color:       #222222;
 $blackKey_BorderColor: #000000;
 $whiteKey_BorderColor: #AAAAAA;
+
+$shadow-3d: 0 3px 0 darken(whitesmoke, 45),
+0 8px 10px rgba(0,0,0,0.15);
+$big-shadow: 0 -8px 30px rgba(0, 0, 0, 0.2);
+$violet: #5f2c82;
+$blue: #49a09d;
+$primary-gradient: linear-gradient(45deg, $violet, $blue);
+
+$piano-key-border: 2px rgba(63, 63, 63, 0.95) solid;
+$black-key-color: #23252d;
+
+$black-keys: (
+"2": 20px,
+"5": 80px,"7": 110px,"10": 170px,"12": 200px,"14": 230px,
+"17": 290px,"19": 320px,"22": 380px,"24": 410px,"26": 440px,
+"29": 500px,"31": 530px,"34": 590px,"36": 620px,"38": 650px,
+"41": 710px,"43": 740px,"46": 800px,"48": 830px,"50": 860px,
+"53": 920px,"55": 950px,"58": 1010px,"60": 1040px,"62": 1070px,
+"65": 1130px,"67": 1160px,"70": 1220px,"72": 1250px,"74": 1280px,
+"77": 1340px,"79": 1370px,"82": 1430px,"84": 1460px,"86": 1490px);
+
+
+
+
 .piano{
   height:           100%;
 	display:          flex;
 	margin:           auto;
 	justify-content:  center;
 	align-items:      center;
-  background-color: #111;
-  
-
+	flex-direction: column;
+  // background-color: #111;
+	.piano-key {
+		background: whitesmoke;
+		height: 140px;
+		width: 30px;
+		border-right: $piano-key-border;
+		-webkit-user-drag: none;
+		&:first-of-type {
+				border-left: none;
+		}
+		&:last-of-type {
+				border-right: none;
+		}
+		position: relative;
+		&.is-black-key {
+				background: $black-key-color;
+				width: 20px;
+				height: 100px;
+				border: $piano-key-border;
+		}
+		& .piano-key-user {
+				position: absolute;
+				content: '';
+				width: 100%;
+				height: 100%;
+		}
+		&.is-playing {
+			
+		}
+}
+display: flex;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-o-user-select: none;
+user-select: none;
+position: relative;
+z-index: 50;
+margin: 40px 0;
+box-shadow: 0 0 40px rgba(0, 0, 0, 0.42);
+overflow: hidden;
+border-radius: 20px;
+border: 2px solid #c7c7c752;
+& .keys {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		display: flex;
+		position: relative;
+		& .is-black-key {
+				position: absolute;
+				z-index: 1;
+				@each $blackKeyNumber, $position in $black-keys {
+						&:nth-of-type(#{$blackKeyNumber}) {
+								left: $position
+						}
+				}
+		}
+}
 .key{
 	float:    left;
 	position: relative;
