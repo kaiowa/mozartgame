@@ -19,12 +19,12 @@ export default {
   },
   watch:{
     noteActive(data){
-      this.$refs[data][0].style.background="green";
+      this.$refs[data][0].style.background='green';
       setTimeout(()=>{
-        if(this.$refs[data][0].className.includes("is-black-key")){
-          this.$refs[data][0].style.background="#000";
+        if(this.$refs[data][0].className.includes('is-black-key')){
+          this.$refs[data][0].style.background='#000';
         }else{
-          this.$refs[data][0].style.background="#fff";
+          this.$refs[data][0].style.background='#fff';
         }
         
       },180);
@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     getIsBlack(data){
-    return data.keyname.includes("S")
+      return data.keyname.includes('S');
       
     },
     clickKey(data){

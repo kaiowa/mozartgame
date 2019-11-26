@@ -1,11 +1,19 @@
 <template>
-<div class="home">
-  <!-- <Piano></Piano> -->
-  
-  <Board :activeCells="activeCells" :activeCellsTrios="activeCellsTrios" @updateNotes="updateNotes"></Board>
-  <button @click="generateDices()">Generate dices</button>
-  <!-- <Visor :notes="notes"></Visor> -->
-   <Piano ></Piano>
+  <div class="home">
+    <!-- <Piano></Piano> -->
+  <Header></Header>
+  <section class="seccion_principal">
+    <Board
+      :active-cells="activeCells"
+      :active-cells-trios="activeCellsTrios"
+      @updateNotes="updateNotes"
+    />
+    <button @click="generateDices()">
+      Generate dices
+    </button>
+  </section>
+    <!-- <Visor :notes="notes"></Visor> -->
+    <Piano />
   
   <!-- <div class="table" v-if="table">
     <div  class="row" v-for="(item,index) in table" :key="index">
@@ -17,8 +25,7 @@
     </div>
 
   </div> -->
-</div>
-
+  </div>
 </template>
 <script src="./Home.js"></script>
 <style lang="scss" scoped>

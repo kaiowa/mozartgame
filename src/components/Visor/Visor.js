@@ -17,7 +17,7 @@ export default {
   },
   watch:{
     notes(data){
-      this.draw()
+      this.draw();
     }
   },
   data() {
@@ -41,26 +41,26 @@ export default {
     console.log('created visor');
 
     // let  canvas = this.$refs
-// var ctx = c.getContext("2d");
-// ctx.beginPath();
-// ctx.moveTo(0, 0);
-// ctx.lineTo(300, 150);
-// ctx.stroke();
+    // var ctx = c.getContext("2d");
+    // ctx.beginPath();
+    // ctx.moveTo(0, 0);
+    // ctx.lineTo(300, 150);
+    // ctx.stroke();
   },
 
   mounted() {
     
   },
   methods: {
-   draw(){
-     console.log('draw');
-     this.totalTime=this.notes[this.notes.length-1].time;
-     let canvas=this.$refs.canvas;
-     let ctx=canvas.getContext("2d");
-     ctx.fillStyle = '#CFD8DC';
+    draw(){
+      console.log('draw');
+      this.totalTime=this.notes[this.notes.length-1].time;
+      let canvas=this.$refs.canvas;
+      let ctx=canvas.getContext('2d');
+      ctx.fillStyle = '#CFD8DC';
      
-     ctx.strokeStyle = "#000";
-     ctx.beginPath();
+      ctx.strokeStyle = '#000';
+      ctx.beginPath();
       for(let a=0;a<=850;a++){
         ctx.moveTo(0+(a*5),0);
         ctx.lineTo(0+(a*5), 400);
@@ -74,7 +74,7 @@ export default {
 
      
     
-   }
+    }
     
   }
  

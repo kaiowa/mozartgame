@@ -1,7 +1,7 @@
 export function generateNumbers(tablero,trios){
   let results=[];
-  results["minus"]=[];
-  results["trios"]=[];
+  results['minus']=[];
+  results['trios']=[];
   let Min = 1;
   let Max = 11;
   let previous;
@@ -29,9 +29,9 @@ export function generateNumbers(tablero,trios){
     let resultItem={
       'dice':tirada,
       'value':numbers[ResultNumber-1]
-    }
+    };
     Aparecidos.push(numbers[ResultNumber-1]);
-    results["minus"].push(resultItem);
+    results['minus'].push(resultItem);
   }
   //trios
   previous=null;
@@ -47,9 +47,9 @@ export function generateNumbers(tablero,trios){
     let resultItem={
       'dice':tirada,
       'value':numbersTrios[ResultNumber-1]
-    }
+    };
     AparecidosTrios.push(numbersTrios[ResultNumber-1]);
-    results["trios"].push(resultItem);
+    results['trios'].push(resultItem);
   }
   console.log('results',results);
 

@@ -128,7 +128,7 @@ const actions = {
   },
   startResetGame({dispatch,commit},data){
     //commit('startResetGame');
-     //generateNumbers(tempTable);
+    //generateNumbers(tempTable);
   },
   generateDices({dispatch,commit},data){
     let tempTable=[];
@@ -148,7 +148,7 @@ const getters = {
 
 const mutations = {
   playNote(state,data){
-    console.log(data)
+    console.log(data);
   },
   generateDices(state,data){
   },

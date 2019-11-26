@@ -1,12 +1,17 @@
 <template>
   <div class="piano">
-
-
-{{noteActive}}
-    <ul v-if="notes" class="keys">
-      <div v-for="(note,index) in notes" :ref="note.keyname" class="piano-key" :class="{'is-black-key': getIsBlack(note), 'is-playing': false}" :key="index">
-        
-        </div>
+    {{ noteActive }}
+    <ul
+      v-if="notes"
+      class="keys"
+    >
+      <div
+        v-for="(note,index) in notes"
+        :ref="note.keyname"
+        :key="index"
+        class="piano-key"
+        :class="{'is-black-key': getIsBlack(note), 'is-playing': false}"
+      />
     </ul>
 
     <!-- <div id="keyboard" >
@@ -47,7 +52,6 @@
       <div class="key black a_sharp" ref="A#5" data-note="A#5"></div>
       <div class="key white b" ref="B5" data-note="B5" style="background-color: rgb(203, 203, 203);"></div>
     </div> -->
-   
   </div>
 </template>
 <script src="./Piano.js"></script>

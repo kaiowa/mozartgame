@@ -1,10 +1,10 @@
 module.exports ={
   module:{
     rules: [
-    {
-      test: /\.mid$/,
-      loader: 'url-loader'
-    }
-  ]
+      {
+        test: /\.mid$/,
+        loader: 'url-loader'
+      }
+    ]
   }
-}
+};

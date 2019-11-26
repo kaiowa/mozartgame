@@ -1,24 +1,9 @@
 import Piano from '@/components/Piano';
 import Board from '@/components/Board';
 import Visor from '@/components/Visor';
+import Header from '@/components/Header';
 
-import { Midi } from '@tonejs/midi';
 import axios from 'axios';
-
-// Midi.fromUrl=function(url){
-//   debugger;
-//   axios.get(url).then((data)=>{
-//     console.log(data);
-//   });
-
-//   // const response = await fetch(url);
-//   // if (response.ok) {
-//   //   const arrayBuffer = await response.arrayBuffer();
-//   //   return new Midi(arrayBuffer);
-//   // } else {
-//   //   throw new Error(`could not load ${url}`);
-//   // }
-// }
 
 import { mapState, } from 'vuex';
 export default {
@@ -34,7 +19,8 @@ export default {
   components: {
     Piano,
     Board,
-    Visor
+    Visor,
+    Header
   },
   computed: {
     ...mapState({
@@ -52,17 +38,17 @@ export default {
     console.log('created home');
   },
   mounted() {
-   console.log('mounted home');
-  //  this.$store.dispatch('game/startResetGame');
+    console.log('mounted home');
+    //  this.$store.dispatch('game/startResetGame');
     // this.extractTrack();
     // let fichero=require('@/assets/midi/bach_846.mid');
     window.onload = function () {
-    MIDI.loadPlugin({
-      soundfontUrl: "/libs/soundfont/",
-      instrument:"acoustic_grand_piano",
-      onprogress: function(state, progress) {
-      },
-      onsuccess: function() {
+      MIDI.loadPlugin({
+        soundfontUrl: '/libs/soundfont/',
+        instrument:'acoustic_grand_piano',
+        onprogress: function(state, progress) {
+        },
+        onsuccess: function() {
           var iOS = ['iPad', 'iPhone', 'iPod'].indexOf(navigator.platform) >= 0;
           console.log('sucesssssssssssss');
           var delay = 0; // play one note every quarter second
@@ -72,9 +58,9 @@ export default {
           MIDI.setVolume(0, 127);
           MIDI.noteOn(0, note, velocity, delay);
           MIDI.noteOff(0, note, delay + 0.75);
-      }
-  });
-};
+        }
+      });
+    };
 
   },
   methods:{
@@ -85,9 +71,9 @@ export default {
     },
     generateDices(){
       this.$store.dispatch('game/generateDices').then((data)=>{
-          console.log('results',data);
-          this.activeCells=data.minus;
-          this.activeCellsTrios=data.trios;
+        console.log('results',data);
+        this.activeCells=data.minus;
+        this.activeCellsTrios=data.trios;
       });
     },
     getTrackFile(){
