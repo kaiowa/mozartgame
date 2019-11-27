@@ -137,7 +137,6 @@ const actions = {
     
   },
   playKey({dispatch,commit},data){
-    console.log('Play key en store',data);
     commit('playKey',data);
   }
 };
@@ -148,7 +147,7 @@ const getters = {
 
 const mutations = {
   playNote(state,data){
-    console.log(data);
+    
   },
   generateDices(state,data){
   },

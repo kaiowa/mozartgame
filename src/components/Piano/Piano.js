@@ -52,7 +52,6 @@ export default {
     this.$store.subscribe((mutation, state) => {
       switch (mutation.type) {
       case 'game/playNote':
-        console.log(mutation);
         this.noteActive=mutation.payload.midiNote;
         break;
       }
