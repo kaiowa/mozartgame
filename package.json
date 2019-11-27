@@ -1,11 +1,13 @@
 {
-  "name": "Minuets",
+  "name": "MozartGame",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "postinstall": "npm run build",
+    "start": "node server.js"
   },
   "dependencies": {
     "@tonejs/midi": "^2.0.15",
@@ -40,5 +42,9 @@
     "sass-loader": "^7.1.0",
     "url-loader": "^2.2.0",
     "vue-template-compiler": "^2.6.10"
+  },
+  "engines": {
+    "node": "10.11.0",
+    "npm": "5.6.0"
   }
 }

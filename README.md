@@ -1,4 +1,4 @@
-# vuetrivia
+# vue-mozart-game
 
 ## Project setup
 ```
