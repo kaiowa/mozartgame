@@ -222,7 +222,7 @@ export default {
       data.forEach((item,index)=>{
         if(item.value){
 
-          let fichero='/files/M'+item.value+'.mid';
+          let fichero='/files/M'+item.value+'.MID';
           console.log(fichero);
           arrayPromises.push(this.loadMidiFile(fichero,contaFicheros));
           contaFicheros++;
