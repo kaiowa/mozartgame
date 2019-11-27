@@ -5,7 +5,7 @@
       <canvas
         id="canvas"
         ref="canvas"
-        style="width:800px;height:400px"
+        style="width:600px;height:400px"
       />
     </div>
   </div>

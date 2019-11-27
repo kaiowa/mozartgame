@@ -271,7 +271,7 @@ export default {
             var velocity = 127; // how hard the note hits
             // play the note
             if(note.subtype=='noteOn'){
-              // MIDI.noteOn(0, note.noteOn, velocity, delay);
+              //  MIDI.noteOn(0, note.noteOn, velocity, delay);
               self.$store.dispatch('game/playNote',note);
             }
           },note.time);

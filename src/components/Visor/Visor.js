@@ -23,7 +23,10 @@ export default {
   data() {
     return {
       notas:[],
-      totalTime:0
+      totalTime:0,
+      canvas:null,
+      ctx:null,
+      
     };
   },
   // computed: {
@@ -50,33 +53,58 @@ export default {
 
   mounted() {
     this.draw();
+    var self=this;
+    this.$store.subscribe((mutation, state) => {
+      switch (mutation.type) {
+      case 'game/playNote':
+        
+        self.drawNote(mutation.payload);
+        break;
+      }
+    });
   },
   methods: {
+    drawNote(nota){
+      this.totalTime=this.totalTime+(parseFloat(nota.time)/1000);
+      
+      console.log('drawNote',this.totalTime);
+
+      var radius = 1;
+
+      this.ctx.beginPath();
+      this.ctx.arc(this.totalTime, nota.velocity, radius, 0, 1 * Math.PI, false);
+      this.ctx.fillStyle = 'green';
+      this.ctx.fill();
+      this.ctx.lineWidth = 5;
+      this.ctx.strokeStyle = '#003300';
+      this.ctx.stroke();
+
+    },
     draw(){
      
       console.log('draw');
       // this.totalTime=this.notes[this.notes.length-1].time;
-      this.totalTime=400;
-      let canvas=this.$refs.canvas;
+      this.totalTime=0;
+      this.canvas=this.$refs.canvas;
       canvas.width = canvas.offsetWidth;
-      let ctx=canvas.getContext('2d');
+      this.ctx=canvas.getContext('2d');
       
-      ctx.fillStyle = '#CFD8DC';
+      this.ctx.fillStyle = '#CFD8DC';
      
-      ctx.strokeWidth=1;
-      ctx.beginPath();
+      this.ctx.strokeWidth=1;
+      this.ctx.beginPath();
       for(let a=0;a<=20;a++){
        
-        ctx.moveTo(0+(a*5),0);
-        ctx.lineTo(0+(a*5), 20);
+        this.ctx.moveTo(0+(a*5),0);
+        this.ctx.lineTo(0+(a*5), 20);
       }
-      ctx.closePath();
-      ctx.stroke();
-      ctx.fill();
-      ctx.moveTo(0,5);
-      ctx.strokeWidth=1;
-      ctx.lineTo(2000,5);
-      ctx.stroke();
+      this.ctx.closePath();
+      this.ctx.stroke();
+      this.ctx.fill();
+      this.ctx.moveTo(0,5);
+      this.ctx.strokeWidth=1;
+      this.ctx.lineTo(2000,5);
+      this.ctx.stroke();
 
      
     
