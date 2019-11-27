@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <!-- <Piano></Piano> -->
   <Header></Header>
   <section class="seccion_principal">
     <Board
@@ -12,19 +11,8 @@
       Generate dices
     </button>
   </section>
-    <!-- <Visor :notes="notes"></Visor> -->
-    <Piano />
-  
-  <!-- <div class="table" v-if="table">
-    <div  class="row" v-for="(item,index) in table" :key="index">
-        
-        <div class="cell title">{{item.dice}}</div>
-        <div class="cell title" v-for="(valor,index2) in item.options" :key="index2">
-          {{valor}}
-        </div>
-    </div>
-
-  </div> -->
+    
+  <Piano />
   </div>
 </template>
 <script src="./Home.js"></script>

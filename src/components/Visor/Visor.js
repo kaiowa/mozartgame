@@ -17,7 +17,7 @@ export default {
   },
   watch:{
     notes(data){
-      this.draw();
+      // this.draw();
     }
   },
   data() {
@@ -49,26 +49,32 @@ export default {
   },
 
   mounted() {
-    
+    this.draw();
   },
   methods: {
     draw(){
+     
       console.log('draw');
-      this.totalTime=this.notes[this.notes.length-1].time;
+      // this.totalTime=this.notes[this.notes.length-1].time;
+      this.totalTime=400;
       let canvas=this.$refs.canvas;
+      canvas.width = canvas.offsetWidth;
       let ctx=canvas.getContext('2d');
+      
       ctx.fillStyle = '#CFD8DC';
      
-      ctx.strokeStyle = '#000';
+      ctx.strokeWidth=1;
       ctx.beginPath();
-      for(let a=0;a<=850;a++){
+      for(let a=0;a<=20;a++){
+       
         ctx.moveTo(0+(a*5),0);
-        ctx.lineTo(0+(a*5), 400);
+        ctx.lineTo(0+(a*5), 20);
       }
       ctx.closePath();
       ctx.stroke();
       ctx.fill();
       ctx.moveTo(0,5);
+      ctx.strokeWidth=1;
       ctx.lineTo(2000,5);
       ctx.stroke();
 

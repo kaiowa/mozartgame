@@ -10,16 +10,16 @@
     background-color:rgba(0,0,0,  0.5);
     top: 0px;
 		z-index: 99;
-		
 	}
 	.table{
-		width:1000px;
+		width:95%;
 		visibility: visible;
-		margin-top: 50px;
+		margin: 50px auto;
+		max-width: 1000px;
+		min-width: 500px;
 		&.trios{
 			margin-top: 20px;
 		}
-		
 	}
 	.row{
 		display: flex;
@@ -28,18 +28,15 @@
 		width: 100%;
 		text-align: center;
 		align-items: center;
-		
 	}
 	.cell{
-
 	  -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     flex-basis: 100%;
     -webkit-box-flex: 1;
     flex: 0 1 auto;
-		width: 5.3%;
+		width: 5%;
 		border: 0px solid;
-
 		height: 26px;
     align-items: center;
     text-align: center;
@@ -53,7 +50,7 @@
 		-moz-box-shadow: inset 1px 1px 10px 1px rgba(0, 0, 0, 0.26);
 		box-shadow: inset 1px 1px 10px 1px rgba(0, 0, 0, 0.26);
 		&.title{
-			width:8%;
+			width:5%;
 			background-color:#e5e6fd
 		}
 		&.active{
