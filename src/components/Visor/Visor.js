@@ -70,7 +70,7 @@ export default {
       console.log('drawNote',this.totalTime);
 
       var radius = 1;
-
+      
       this.ctx.beginPath();
       this.ctx.arc(this.totalTime, nota.velocity, radius, 0, 1 * Math.PI, false);
       this.ctx.fillStyle = 'green';
@@ -79,6 +79,8 @@ export default {
       this.ctx.strokeStyle = '#003300';
       this.ctx.stroke();
 
+      
+      
     },
     draw(){
      
