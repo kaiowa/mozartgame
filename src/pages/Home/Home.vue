@@ -11,7 +11,7 @@
         Generate dices
       </button>
     </section>
-    <Visor></Visor>
+    <!-- <Visor></Visor> -->
     <Piano />
   </div>
 </template>
