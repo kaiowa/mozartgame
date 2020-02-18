@@ -2,6 +2,6 @@
 
 mozart game experiment with vue
 
-![](screenshot2.png)
+![](screenshot1.png)
 
 ![](screenshot2.png)
