@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Header />
+    <!-- <Header /> -->
     <section class="seccion_principal">
       <Board
         :active-cells="activeCells"
